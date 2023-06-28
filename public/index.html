@@ -40,19 +40,33 @@
     -->
 </body>
 <script>
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', function () {
-      navigator.serviceWorker.register('./service-worker.js').then(function (registration) {
-        console.log('Worker registration successful', registration.scope);
-      }, function (err) {
-        console.log('Worker registration failed', err);
-      }).catch(function (err) {
-        console.log(err);
-      });
-    });
-  } else {
-    console.log('Service Worker is not supported by browser.');
+  const windowLoaded = () => new Promise((resolve, reject) => {
+    window.addEventListener('load', () => {
+      resolve();
+    })
+  });
+
+  const registerSW = async () => {
+    if ('serviceWorker' in navigator) {
+      try {
+        await windowLoaded()
+        const swRegistration = await navigator.serviceWorker.register('./service-worker.js')
+        console.log('Worker registration successful', swRegistration.scope);
+
+         const readySW = await navigator.serviceWorker.ready
+         readySW.sync.register('mySync')
+      } catch (error) {
+        console.log(error.message)
+      }
+
+    } else {
+      console.log('Service Worker is not supported by browser.');
+    }
   }
+
+  registerSW()
+
+
 </script>
 
 </html>
