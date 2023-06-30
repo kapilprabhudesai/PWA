@@ -15,8 +15,9 @@ const bgSyncPlugin = new BackgroundSyncPlugin('myPendingTasks', {
     maxRetentionTime: 24 * 60, // Retry for max of 24 Hours (specified in minutes)
 });
 const baseUrl = process.env.REACT_APP_API_BASE_URL;
+const newBaseUrl =  /https:\/\/audiinspectionapiv2.stageibb.com\/api\/*/,
 registerRoute(
-    baseUrl,
+    newBaseUrl,
     new NetworkOnly({
         plugins: [bgSyncPlugin],
     }),
@@ -34,9 +35,9 @@ registerRoute(
     new NetworkFirst()
   );
 // eslint-disable-next-line
-// self.addEventListener('install', event => event.waitUntil(self.skipWaiting()));
+ self.addEventListener('install', event => event.waitUntil(self.skipWaiting()));
 // // eslint-disable-next-line
-// self.addEventListener('activate', event => event.waitUntil(self.clients.claim()));
+ self.addEventListener('activate', event => event.waitUntil(self.clients.claim()));
 // // app-shell
 // // eslint-disable-next-line no-undef
 // workbox.routing.registerRoute("/", new workbox.strategies.NetworkFirst());
