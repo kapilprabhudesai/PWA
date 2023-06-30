@@ -15,7 +15,7 @@ const bgSyncPlugin = new BackgroundSyncPlugin('myPendingTasks', {
     maxRetentionTime: 24 * 60, // Retry for max of 24 Hours (specified in minutes)
 });
 const baseUrl = process.env.REACT_APP_API_BASE_URL;
-const newBaseUrl =  /https:\/\/audiinspectionapiv2.stageibb.com\/api\/*/,
+const newBaseUrl =  /https:\/\/audiinspectionapiv2.stageibb.com\/api\/*/;
 registerRoute(
     newBaseUrl,
     new NetworkOnly({
