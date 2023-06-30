@@ -1,0 +1,18 @@
+@font-face {
+    font-family: "AudiTypeWide";
+    src: url("./fonts/AudiType-WideNormal_4.03.woff2") format("woff2");
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: "AudiTypeWideBold";
+    src: url("./fonts/AudiType-WideBold_4.03.woff2") format("woff2");
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: "AudiTypeExtendedBold";
+    src: url("./fonts/AudiType-ExtendedBold_4.03.woff2") format("woff2");
+    font-weight: normal;
+    font-style: normal;
+}

@@ -1,5 +1,5 @@
 import { precacheAndRoute } from 'workbox-precaching';
-import { NetworkOnly } from 'workbox-strategies';
+import { NetworkOnly ,CacheFirst,NetworkFirst} from 'workbox-strategies';
 import { BackgroundSyncPlugin } from 'workbox-background-sync';
 import {registerRoute} from 'workbox-routing';
 
@@ -14,14 +14,25 @@ precacheAndRoute(self.__WB_MANIFEST);
 const bgSyncPlugin = new BackgroundSyncPlugin('myPendingTasks', {
     maxRetentionTime: 24 * 60, // Retry for max of 24 Hours (specified in minutes)
 });
-
+const baseUrl = process.env.REACT_APP_API_BASE_URL;
 registerRoute(
-    'http://localhost:4000/api/tasks',
+    baseUrl,
     new NetworkOnly({
         plugins: [bgSyncPlugin],
     }),
     'POST'
 );
+
+registerRoute(
+    /\.(?:png|gif|jpg|jpeg|svg)$/,
+    new CacheFirst()
+  );
+  
+  // Default strategy for all other requests
+  registerRoute(
+    new RegExp('.*'),
+    new NetworkFirst()
+  );
 // eslint-disable-next-line
 // self.addEventListener('install', event => event.waitUntil(self.skipWaiting()));
 // // eslint-disable-next-line

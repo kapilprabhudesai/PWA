@@ -1,0 +1,8 @@
+export const LOGIN  = "/login"
+export const FORGOT_PASSWORD  = "/forgot-password"
+export const CONFIG = "/v1/config-vars"
+export const SAVE_LEAD = "/v1/create-lead"
+export const DASHBOARD ="/v1/get-dashboard"
+export const USER_PROFILE ="/v1/get-profile"
+export const CHANGE_PASSWORD ="/v1/change-password"
+export const NEW_LEAD ="/v1/get-leads"
